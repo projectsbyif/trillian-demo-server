@@ -40,6 +40,7 @@ disable_ubuntu_motd() {
 }
 
 install_symlinks() {
+    ln -sf /vagrant/Makefile /home/vagrant/Makefile
     ln -sf /vagrant/config/bashrc /home/vagrant/.bashrc
     ln -sf /vagrant/config/my.cnf /home/vagrant/.my.cnf
     ln -sf /vagrant/config/go_paths.sh /etc/profile.d/go_paths.sh

@@ -2,13 +2,15 @@
 | Trillian Vagrant                               |
 +------------------------------------------------+
 
-(see `config/provision.sh` for how to run Trillian tests)
-
 In one terminal, run Trillian in Log mode:
 
-    trillian_log_server
+    make run_trillian_log_server
 
-In another terminal, run the timestamp logger:
+In another terminal, run Trillian's Log signer:
 
-    cd ~/trillian-personality-timestamp/
-    make run
+    make run_trillian_log_signer
+
+In a third, run our Flask application:
+
+    make run_webserver
+
