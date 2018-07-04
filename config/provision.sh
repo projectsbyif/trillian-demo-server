@@ -80,20 +80,20 @@ load_go_paths() {
 install_trillian_from_if_fork_master() {
   # Go get: https://golang.org/cmd/go/#hdr-Download_and_install_packages_and_dependencies
 
-  run_as_vagrant "go get github.com/projectsbyif/trillian"
-  run_as_vagrant "cd $GOPATH/src/github.com/projectsbyif/trillian && go get -t -u -v ./..."
+  run_as_vagrant "go get github.com/google/trillian"
+  run_as_vagrant "cd $GOPATH/src/github.com/google/trillian && go get -t -u ./..."
 }
 
 build_trillian_createtree() {
-  run_as_vagrant "cd $GOPATH/src/github.com/projectsbyif/trillian && go build ./cmd/createtree"
+  run_as_vagrant "cd $GOPATH/src/github.com/google/trillian && go build ./cmd/createtree"
 }
 
 build_and_run_trillian_tests() {
-  run_as_vagrant "cd $GOPATH/src/github.com/projectsbyif/trillian && go test ./..."
+  run_as_vagrant "cd $GOPATH/src/github.com/google/trillian && go test ./..."
 }
 
 run_trillian_log_integration_tests() {
-  run_as_vagrant "cd $GOPATH/src/github.com/projectsbyif/trillian && ./integration/log_integration_test.sh"
+  run_as_vagrant "cd $GOPATH/src/github.com/google/trillian && ./integration/log_integration_test.sh"
 }
 
 run_as_vagrant() {
