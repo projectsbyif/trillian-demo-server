@@ -1,0 +1,14 @@
++------------------------------------------------+
+| Trillian Vagrant                               |
++------------------------------------------------+
+
+(see `config/provision.sh` for how to run Trillian tests)
+
+In one terminal, run Trillian in Log mode:
+
+    trillian_log_server
+
+In another terminal, run the timestamp logger:
+
+    cd ~/trillian-personality-timestamp/
+    make run
