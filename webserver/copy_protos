@@ -1,0 +1,13 @@
+mkdir -p protobuf/google/api protobuf/google/rpc protobuf/crypto/{keyspb,sigpb}
+
+cp ../trillian/trillian_log_api.proto protobuf/trillian_log_api.proto
+cp ../trillian/trillian_admin_api.proto protobuf/trillian_admin_api.proto
+cp ../trillian/trillian.proto protobuf/trillian.proto
+cp ../trillian/vendor/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis/google/api/annotations.proto protobuf/google/api/annotations.proto
+cp ../trillian/vendor/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis/google/api/http.proto protobuf/google/api/http.proto
+
+# Warning: version mismatch?
+cp ../googleapis/google/rpc/status.proto protobuf/google/rpc/status.proto
+
+cp ../trillian/crypto/keyspb/keyspb.proto ./protobuf/crypto/keyspb/keyspb.proto
+cp ../trillian/crypto/sigpb/sigpb.proto ./protobuf/crypto/sigpb/sigpb.proto
