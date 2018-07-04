@@ -111,20 +111,21 @@ def log_index():
             'der': to_b64(tree.public_key.der),
         }
 
-    logs = Log.query.all()
+    def serialize_log_tree(log_tree):
+        db_log = Log.query.filter_by(id=log_tree.tree_id).first()
 
-    def add_fields(log):
-        new_log = log.__json__()
-        new_log['log_url'] = '{}v1beta1/logs/{}'.format(
-             request.url_root, log.id
-        )
-        # new_log['public_key'] = serialize_public_key(
-        #     TRILLIAN_ADMIN.get_public_key(log.id)
-        # )
-        return new_log
+        return OrderedDict([
+            ('log_id', log_tree.tree_id),
+            ('log_url', '{}v1beta1/logs/{}'.format(
+                 request.url_root, log_tree.tree_id
+                 )),
+            ('public_key', serialize_public_key(log_tree)),
+            ('name', db_log.name if db_log is not None else None),
+            ('slug', db_log.slug if db_log is not None else None),
+        ])
 
     return {
-        'logs': map(add_fields, logs)
+        'logs': map(serialize_log_tree, TRILLIAN_ADMIN.logs())
     }
 
 

@@ -7,14 +7,28 @@ import trillian_admin_api_pb2_grpc
 
 
 class TrillianAdminClient():
+    """
+    Calls the gRPC endpoints defined in:
+    https://github.com/google/trillian/blob/master/trillian_admin_api.proto
+    """
+
     def __init__(self, host, port):
         self.__channel = grpc.insecure_channel('{}:{}'.format(host, port))
         self.__stub = trillian_admin_api_pb2_grpc.TrillianAdminStub(self.__channel)
 
     def logs(self):
+        """
+        Gets a ListTreeResponse:
+        https://github.com/google/trillian/blob/master/trillian_admin_api.proto
+
+        Then returns an iterable of Tree objects from:
+        https://github.com/google/trillian/blob/master/trillian.proto
+        """
         request = trillian_admin_api_pb2.ListTreesRequest()
 
-        return self.__stub.ListTrees(request)
+        # TODO: filter out maps
+
+        return self.__stub.ListTrees(request).tree
 
     def get_public_key(self, log_id):
         request = trillian_admin_api_pb2.GetTreeRequest(tree_id=log_id)
