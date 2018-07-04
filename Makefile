@@ -24,10 +24,10 @@ $(TRAFFIC_COUNT_DEMO_LOG_ID_FILE): /home/vagrant/.reset_db_run
 
 .PHONY: run_webserver
 run_webserver: $(TRAFFIC_COUNT_DEMO_LOG_ID_FILE)
-	cd webserver ; \
+	cd /vagrant/webserver ; \
 	make run
 
 .PHONY: watch_sass
 watch_sass:
-	cd webserver ; \
+	cd /vagrant/webserver ; \
 	make watch_sass
