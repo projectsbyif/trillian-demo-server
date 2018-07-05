@@ -129,6 +129,16 @@ def log_index():
     }
 
 
+@app.route('/create')
+@as_json
+def log_create():
+    log_tree = TRILLIAN_ADMIN.create_log()
+
+    return {
+        "id": log_tree.tree_id
+    }
+
+
 def to_b64(binary):
     return base64.b64encode(binary).decode('ascii')
 
