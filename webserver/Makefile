@@ -7,6 +7,7 @@ code: venv/bin/activate protobuf/trillian_log_api.proto
 	    protobuf/trillian_admin_api.proto \
 	    protobuf/trillian_log_api.proto \
 	    protobuf/trillian.proto \
+	    protobuf/google/protobuf/duration.proto \
 	    protobuf/google/api/annotations.proto \
 	    protobuf/google/api/http.proto \
 	    protobuf/google/rpc/status.proto \
