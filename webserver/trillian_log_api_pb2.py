@@ -23,11 +23,42 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='trillian_log_api.proto',
   package='trillian',
   syntax='proto3',
-  serialized_pb=_b('\n\x16trillian_log_api.proto\x12\x08trillian\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17google/rpc/status.proto\x1a\x0etrillian.proto\"C\n\x10QueueLeafRequest\x12\x0e\n\x06log_id\x18\x01 \x01(\x03\x12\x1f\n\x04leaf\x18\x02 \x01(\x0b\x32\x11.trillian.LogLeaf\"A\n\x11QueueLeafResponse\x12,\n\x0bqueued_leaf\x18\x02 \x01(\x0b\x32\x17.trillian.QueuedLogLeaf\"J\n\x17\x41\x64\x64SequencedLeafRequest\x12\x0e\n\x06log_id\x18\x01 \x01(\x03\x12\x1f\n\x04leaf\x18\x02 \x01(\x0b\x32\x11.trillian.LogLeaf\"C\n\x18\x41\x64\x64SequencedLeafResponse\x12\'\n\x06result\x18\x02 \x01(\x0b\x32\x17.trillian.QueuedLogLeaf\"Q\n\x18GetInclusionProofRequest\x12\x0e\n\x06log_id\x18\x01 \x01(\x03\x12\x12\n\nleaf_index\x18\x02 \x01(\x03\x12\x11\n\ttree_size\x18\x03 \x01(\x03\"m\n\x19GetInclusionProofResponse\x12\x1e\n\x05proof\x18\x02 \x01(\x0b\x32\x0f.trillian.Proof\x12\x30\n\x0fsigned_log_root\x18\x03 \x01(\x0b\x32\x17.trillian.SignedLogRoot\"q\n\x1eGetInclusionProofByHashRequest\x12\x0e\n\x06log_id\x18\x01 \x01(\x03\x12\x11\n\tleaf_hash\x18\x02 \x01(\x0c\x12\x11\n\ttree_size\x18\x03 \x01(\x03\x12\x19\n\x11order_by_sequence\x18\x04 \x01(\x08\"s\n\x1fGetInclusionProofByHashResponse\x12\x1e\n\x05proof\x18\x02 \x03(\x0b\x32\x0f.trillian.Proof\x12\x30\n\x0fsigned_log_root\x18\x03 \x01(\x0b\x32\x17.trillian.SignedLogRoot\"_\n\x1aGetConsistencyProofRequest\x12\x0e\n\x06log_id\x18\x01 \x01(\x03\x12\x17\n\x0f\x66irst_tree_size\x18\x02 \x01(\x03\x12\x18\n\x10second_tree_size\x18\x03 \x01(\x03\"o\n\x1bGetConsistencyProofResponse\x12\x1e\n\x05proof\x18\x02 \x01(\x0b\x32\x0f.trillian.Proof\x12\x30\n\x0fsigned_log_root\x18\x03 \x01(\x0b\x32\x17.trillian.SignedLogRoot\"/\n\x1dGetLatestSignedLogRootRequest\x12\x0e\n\x06log_id\x18\x01 \x01(\x03\"R\n\x1eGetLatestSignedLogRootResponse\x12\x30\n\x0fsigned_log_root\x18\x02 \x01(\x0b\x32\x17.trillian.SignedLogRoot\".\n\x1cGetSequencedLeafCountRequest\x12\x0e\n\x06log_id\x18\x01 \x01(\x03\"3\n\x1dGetSequencedLeafCountResponse\x12\x12\n\nleaf_count\x18\x02 \x01(\x03\"P\n\x17GetEntryAndProofRequest\x12\x0e\n\x06log_id\x18\x01 \x01(\x03\x12\x12\n\nleaf_index\x18\x02 \x01(\x03\x12\x11\n\ttree_size\x18\x03 \x01(\x03\"\x8d\x01\n\x18GetEntryAndProofResponse\x12\x1e\n\x05proof\x18\x02 \x01(\x0b\x32\x0f.trillian.Proof\x12\x1f\n\x04leaf\x18\x03 \x01(\x0b\x32\x11.trillian.LogLeaf\x12\x30\n\x0fsigned_log_root\x18\x04 \x01(\x0b\x32\x17.trillian.SignedLogRoot\" \n\x0eInitLogRequest\x12\x0e\n\x06log_id\x18\x01 \x01(\x03\";\n\x0fInitLogResponse\x12(\n\x07\x63reated\x18\x01 \x01(\x0b\x32\x17.trillian.SignedLogRoot\"G\n\x12QueueLeavesRequest\x12\x0e\n\x06log_id\x18\x01 \x01(\x03\x12!\n\x06leaves\x18\x02 \x03(\x0b\x32\x11.trillian.LogLeaf\"E\n\x13QueueLeavesResponse\x12.\n\rqueued_leaves\x18\x02 \x03(\x0b\x32\x17.trillian.QueuedLogLeaf\"N\n\x19\x41\x64\x64SequencedLeavesRequest\x12\x0e\n\x06log_id\x18\x01 \x01(\x03\x12!\n\x06leaves\x18\x02 \x03(\x0b\x32\x11.trillian.LogLeaf\"F\n\x1a\x41\x64\x64SequencedLeavesResponse\x12(\n\x07results\x18\x02 \x03(\x0b\x32\x17.trillian.QueuedLogLeaf\"=\n\x17GetLeavesByIndexRequest\x12\x0e\n\x06log_id\x18\x01 \x01(\x03\x12\x12\n\nleaf_index\x18\x02 \x03(\x03\"o\n\x18GetLeavesByIndexResponse\x12!\n\x06leaves\x18\x02 \x03(\x0b\x32\x11.trillian.LogLeaf\x12\x30\n\x0fsigned_log_root\x18\x03 \x01(\x0b\x32\x17.trillian.SignedLogRoot\"M\n\x17GetLeavesByRangeRequest\x12\x0e\n\x06log_id\x18\x01 \x01(\x03\x12\x13\n\x0bstart_index\x18\x02 \x01(\x03\x12\r\n\x05\x63ount\x18\x03 \x01(\x03\"o\n\x18GetLeavesByRangeResponse\x12!\n\x06leaves\x18\x01 \x03(\x0b\x32\x11.trillian.LogLeaf\x12\x30\n\x0fsigned_log_root\x18\x02 \x01(\x0b\x32\x17.trillian.SignedLogRoot\"V\n\x16GetLeavesByHashRequest\x12\x0e\n\x06log_id\x18\x01 \x01(\x03\x12\x11\n\tleaf_hash\x18\x02 \x03(\x0c\x12\x19\n\x11order_by_sequence\x18\x03 \x01(\x08\"n\n\x17GetLeavesByHashResponse\x12!\n\x06leaves\x18\x02 \x03(\x0b\x32\x11.trillian.LogLeaf\x12\x30\n\x0fsigned_log_root\x18\x03 \x01(\x0b\x32\x17.trillian.SignedLogRoot\"T\n\rQueuedLogLeaf\x12\x1f\n\x04leaf\x18\x01 \x01(\x0b\x32\x11.trillian.LogLeaf\x12\"\n\x06status\x18\x02 \x01(\x0b\x32\x12.google.rpc.Status\"\xe9\x01\n\x07LogLeaf\x12\x18\n\x10merkle_leaf_hash\x18\x01 \x01(\x0c\x12\x12\n\nleaf_value\x18\x02 \x01(\x0c\x12\x12\n\nextra_data\x18\x03 \x01(\x0c\x12\x12\n\nleaf_index\x18\x04 \x01(\x03\x12\x1a\n\x12leaf_identity_hash\x18\x05 \x01(\x0c\x12\x33\n\x0fqueue_timestamp\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x37\n\x13integrate_timestamp\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"1\n\x05Proof\x12\x12\n\nleaf_index\x18\x01 \x01(\x03\x12\x0e\n\x06hashes\x18\x03 \x03(\x0cJ\x04\x08\x02\x10\x03\x32\xe8\r\n\x0bTrillianLog\x12n\n\tQueueLeaf\x12\x1a.trillian.QueueLeafRequest\x1a\x1b.trillian.QueueLeafResponse\"(\x82\xd3\xe4\x93\x02\"\"\x1d/v1beta1/logs/{log_id}/leaves:\x01*\x12\x8d\x01\n\x10\x41\x64\x64SequencedLeaf\x12!.trillian.AddSequencedLeafRequest\x1a\".trillian.AddSequencedLeafResponse\"2\x82\xd3\xe4\x93\x02,\"\'/v1beta1/logs/{log_id}/leaves:sequenced:\x01*\x12\xa0\x01\n\x11GetInclusionProof\x12\".trillian.GetInclusionProofRequest\x1a#.trillian.GetInclusionProofResponse\"B\x82\xd3\xe4\x93\x02<\x12:/v1beta1/logs/{log_id}/leaves/{leaf_index}:inclusion_proof\x12\xa7\x01\n\x17GetInclusionProofByHash\x12(.trillian.GetInclusionProofByHashRequest\x1a).trillian.GetInclusionProofByHashResponse\"7\x82\xd3\xe4\x93\x02\x31\x12//v1beta1/logs/{log_id}/leaves:inclusion_by_hash\x12\x94\x01\n\x13GetConsistencyProof\x12$.trillian.GetConsistencyProofRequest\x1a%.trillian.GetConsistencyProofResponse\"0\x82\xd3\xe4\x93\x02*\x12(/v1beta1/logs/{log_id}:consistency_proof\x12\x98\x01\n\x16GetLatestSignedLogRoot\x12\'.trillian.GetLatestSignedLogRootRequest\x1a(.trillian.GetLatestSignedLogRootResponse\"+\x82\xd3\xe4\x93\x02%\x12#/v1beta1/logs/{log_id}/roots:latest\x12\x9f\x01\n\x15GetSequencedLeafCount\x12&.trillian.GetSequencedLeafCountRequest\x1a\'.trillian.GetSequencedLeafCountResponse\"5\x82\xd3\xe4\x93\x02/\x12-/v1beta1/logs/{log_id}/leaves:sequenced_count\x12\x8d\x01\n\x10GetEntryAndProof\x12!.trillian.GetEntryAndProofRequest\x1a\".trillian.GetEntryAndProofResponse\"2\x82\xd3\xe4\x93\x02,\x12*/v1beta1/logs/{log_id}/leaves/{leaf_index}\x12\x63\n\x07InitLog\x12\x18.trillian.InitLogRequest\x1a\x19.trillian.InitLogResponse\"#\x82\xd3\xe4\x93\x02\x1d\"\x1b/v1beta1/logs/{log_id}:init\x12L\n\x0bQueueLeaves\x12\x1c.trillian.QueueLeavesRequest\x1a\x1d.trillian.QueueLeavesResponse\"\x00\x12\x61\n\x12\x41\x64\x64SequencedLeaves\x12#.trillian.AddSequencedLeavesRequest\x1a$.trillian.AddSequencedLeavesResponse\"\x00\x12[\n\x10GetLeavesByIndex\x12!.trillian.GetLeavesByIndexRequest\x1a\".trillian.GetLeavesByIndexResponse\"\x00\x12[\n\x10GetLeavesByRange\x12!.trillian.GetLeavesByRangeRequest\x1a\".trillian.GetLeavesByRangeResponse\"\x00\x12X\n\x0fGetLeavesByHash\x12 .trillian.GetLeavesByHashRequest\x1a!.trillian.GetLeavesByHashResponse\"\x00\x42N\n\x19\x63om.google.trillian.protoB\x13TrillianLogApiProtoP\x01Z\x1agithub.com/google/trillianb\x06proto3')
+  serialized_pb=_b('\n\x16trillian_log_api.proto\x12\x08trillian\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17google/rpc/status.proto\x1a\x0etrillian.proto\"\x18\n\x08\x43hargeTo\x12\x0c\n\x04user\x18\x01 \x03(\t\"j\n\x10QueueLeafRequest\x12\x0e\n\x06log_id\x18\x01 \x01(\x03\x12\x1f\n\x04leaf\x18\x02 \x01(\x0b\x32\x11.trillian.LogLeaf\x12%\n\tcharge_to\x18\x03 \x01(\x0b\x32\x12.trillian.ChargeTo\"A\n\x11QueueLeafResponse\x12,\n\x0bqueued_leaf\x18\x02 \x01(\x0b\x32\x17.trillian.QueuedLogLeaf\"q\n\x17\x41\x64\x64SequencedLeafRequest\x12\x0e\n\x06log_id\x18\x01 \x01(\x03\x12\x1f\n\x04leaf\x18\x02 \x01(\x0b\x32\x11.trillian.LogLeaf\x12%\n\tcharge_to\x18\x03 \x01(\x0b\x32\x12.trillian.ChargeTo\"C\n\x18\x41\x64\x64SequencedLeafResponse\x12\'\n\x06result\x18\x02 \x01(\x0b\x32\x17.trillian.QueuedLogLeaf\"x\n\x18GetInclusionProofRequest\x12\x0e\n\x06log_id\x18\x01 \x01(\x03\x12\x12\n\nleaf_index\x18\x02 \x01(\x03\x12\x11\n\ttree_size\x18\x03 \x01(\x03\x12%\n\tcharge_to\x18\x04 \x01(\x0b\x32\x12.trillian.ChargeTo\"m\n\x19GetInclusionProofResponse\x12\x1e\n\x05proof\x18\x02 \x01(\x0b\x32\x0f.trillian.Proof\x12\x30\n\x0fsigned_log_root\x18\x03 \x01(\x0b\x32\x17.trillian.SignedLogRoot\"\x98\x01\n\x1eGetInclusionProofByHashRequest\x12\x0e\n\x06log_id\x18\x01 \x01(\x03\x12\x11\n\tleaf_hash\x18\x02 \x01(\x0c\x12\x11\n\ttree_size\x18\x03 \x01(\x03\x12\x19\n\x11order_by_sequence\x18\x04 \x01(\x08\x12%\n\tcharge_to\x18\x05 \x01(\x0b\x32\x12.trillian.ChargeTo\"s\n\x1fGetInclusionProofByHashResponse\x12\x1e\n\x05proof\x18\x02 \x03(\x0b\x32\x0f.trillian.Proof\x12\x30\n\x0fsigned_log_root\x18\x03 \x01(\x0b\x32\x17.trillian.SignedLogRoot\"\x86\x01\n\x1aGetConsistencyProofRequest\x12\x0e\n\x06log_id\x18\x01 \x01(\x03\x12\x17\n\x0f\x66irst_tree_size\x18\x02 \x01(\x03\x12\x18\n\x10second_tree_size\x18\x03 \x01(\x03\x12%\n\tcharge_to\x18\x04 \x01(\x0b\x32\x12.trillian.ChargeTo\"o\n\x1bGetConsistencyProofResponse\x12\x1e\n\x05proof\x18\x02 \x01(\x0b\x32\x0f.trillian.Proof\x12\x30\n\x0fsigned_log_root\x18\x03 \x01(\x0b\x32\x17.trillian.SignedLogRoot\"V\n\x1dGetLatestSignedLogRootRequest\x12\x0e\n\x06log_id\x18\x01 \x01(\x03\x12%\n\tcharge_to\x18\x02 \x01(\x0b\x32\x12.trillian.ChargeTo\"R\n\x1eGetLatestSignedLogRootResponse\x12\x30\n\x0fsigned_log_root\x18\x02 \x01(\x0b\x32\x17.trillian.SignedLogRoot\"U\n\x1cGetSequencedLeafCountRequest\x12\x0e\n\x06log_id\x18\x01 \x01(\x03\x12%\n\tcharge_to\x18\x02 \x01(\x0b\x32\x12.trillian.ChargeTo\"3\n\x1dGetSequencedLeafCountResponse\x12\x12\n\nleaf_count\x18\x02 \x01(\x03\"w\n\x17GetEntryAndProofRequest\x12\x0e\n\x06log_id\x18\x01 \x01(\x03\x12\x12\n\nleaf_index\x18\x02 \x01(\x03\x12\x11\n\ttree_size\x18\x03 \x01(\x03\x12%\n\tcharge_to\x18\x04 \x01(\x0b\x32\x12.trillian.ChargeTo\"\x8d\x01\n\x18GetEntryAndProofResponse\x12\x1e\n\x05proof\x18\x02 \x01(\x0b\x32\x0f.trillian.Proof\x12\x1f\n\x04leaf\x18\x03 \x01(\x0b\x32\x11.trillian.LogLeaf\x12\x30\n\x0fsigned_log_root\x18\x04 \x01(\x0b\x32\x17.trillian.SignedLogRoot\"G\n\x0eInitLogRequest\x12\x0e\n\x06log_id\x18\x01 \x01(\x03\x12%\n\tcharge_to\x18\x02 \x01(\x0b\x32\x12.trillian.ChargeTo\";\n\x0fInitLogResponse\x12(\n\x07\x63reated\x18\x01 \x01(\x0b\x32\x17.trillian.SignedLogRoot\"n\n\x12QueueLeavesRequest\x12\x0e\n\x06log_id\x18\x01 \x01(\x03\x12!\n\x06leaves\x18\x02 \x03(\x0b\x32\x11.trillian.LogLeaf\x12%\n\tcharge_to\x18\x03 \x01(\x0b\x32\x12.trillian.ChargeTo\"E\n\x13QueueLeavesResponse\x12.\n\rqueued_leaves\x18\x02 \x03(\x0b\x32\x17.trillian.QueuedLogLeaf\"u\n\x19\x41\x64\x64SequencedLeavesRequest\x12\x0e\n\x06log_id\x18\x01 \x01(\x03\x12!\n\x06leaves\x18\x02 \x03(\x0b\x32\x11.trillian.LogLeaf\x12%\n\tcharge_to\x18\x04 \x01(\x0b\x32\x12.trillian.ChargeTo\"F\n\x1a\x41\x64\x64SequencedLeavesResponse\x12(\n\x07results\x18\x02 \x03(\x0b\x32\x17.trillian.QueuedLogLeaf\"d\n\x17GetLeavesByIndexRequest\x12\x0e\n\x06log_id\x18\x01 \x01(\x03\x12\x12\n\nleaf_index\x18\x02 \x03(\x03\x12%\n\tcharge_to\x18\x05 \x01(\x0b\x32\x12.trillian.ChargeTo\"o\n\x18GetLeavesByIndexResponse\x12!\n\x06leaves\x18\x02 \x03(\x0b\x32\x11.trillian.LogLeaf\x12\x30\n\x0fsigned_log_root\x18\x03 \x01(\x0b\x32\x17.trillian.SignedLogRoot\"t\n\x17GetLeavesByRangeRequest\x12\x0e\n\x06log_id\x18\x01 \x01(\x03\x12\x13\n\x0bstart_index\x18\x02 \x01(\x03\x12\r\n\x05\x63ount\x18\x03 \x01(\x03\x12%\n\tcharge_to\x18\x04 \x01(\x0b\x32\x12.trillian.ChargeTo\"o\n\x18GetLeavesByRangeResponse\x12!\n\x06leaves\x18\x01 \x03(\x0b\x32\x11.trillian.LogLeaf\x12\x30\n\x0fsigned_log_root\x18\x02 \x01(\x0b\x32\x17.trillian.SignedLogRoot\"}\n\x16GetLeavesByHashRequest\x12\x0e\n\x06log_id\x18\x01 \x01(\x03\x12\x11\n\tleaf_hash\x18\x02 \x03(\x0c\x12\x19\n\x11order_by_sequence\x18\x03 \x01(\x08\x12%\n\tcharge_to\x18\x05 \x01(\x0b\x32\x12.trillian.ChargeTo\"n\n\x17GetLeavesByHashResponse\x12!\n\x06leaves\x18\x02 \x03(\x0b\x32\x11.trillian.LogLeaf\x12\x30\n\x0fsigned_log_root\x18\x03 \x01(\x0b\x32\x17.trillian.SignedLogRoot\"T\n\rQueuedLogLeaf\x12\x1f\n\x04leaf\x18\x01 \x01(\x0b\x32\x11.trillian.LogLeaf\x12\"\n\x06status\x18\x02 \x01(\x0b\x32\x12.google.rpc.Status\"\xe9\x01\n\x07LogLeaf\x12\x18\n\x10merkle_leaf_hash\x18\x01 \x01(\x0c\x12\x12\n\nleaf_value\x18\x02 \x01(\x0c\x12\x12\n\nextra_data\x18\x03 \x01(\x0c\x12\x12\n\nleaf_index\x18\x04 \x01(\x03\x12\x1a\n\x12leaf_identity_hash\x18\x05 \x01(\x0c\x12\x33\n\x0fqueue_timestamp\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x37\n\x13integrate_timestamp\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"1\n\x05Proof\x12\x12\n\nleaf_index\x18\x01 \x01(\x03\x12\x0e\n\x06hashes\x18\x03 \x03(\x0cJ\x04\x08\x02\x10\x03\x32\xe8\r\n\x0bTrillianLog\x12n\n\tQueueLeaf\x12\x1a.trillian.QueueLeafRequest\x1a\x1b.trillian.QueueLeafResponse\"(\x82\xd3\xe4\x93\x02\"\"\x1d/v1beta1/logs/{log_id}/leaves:\x01*\x12\x8d\x01\n\x10\x41\x64\x64SequencedLeaf\x12!.trillian.AddSequencedLeafRequest\x1a\".trillian.AddSequencedLeafResponse\"2\x82\xd3\xe4\x93\x02,\"\'/v1beta1/logs/{log_id}/leaves:sequenced:\x01*\x12\xa0\x01\n\x11GetInclusionProof\x12\".trillian.GetInclusionProofRequest\x1a#.trillian.GetInclusionProofResponse\"B\x82\xd3\xe4\x93\x02<\x12:/v1beta1/logs/{log_id}/leaves/{leaf_index}:inclusion_proof\x12\xa7\x01\n\x17GetInclusionProofByHash\x12(.trillian.GetInclusionProofByHashRequest\x1a).trillian.GetInclusionProofByHashResponse\"7\x82\xd3\xe4\x93\x02\x31\x12//v1beta1/logs/{log_id}/leaves:inclusion_by_hash\x12\x94\x01\n\x13GetConsistencyProof\x12$.trillian.GetConsistencyProofRequest\x1a%.trillian.GetConsistencyProofResponse\"0\x82\xd3\xe4\x93\x02*\x12(/v1beta1/logs/{log_id}:consistency_proof\x12\x98\x01\n\x16GetLatestSignedLogRoot\x12\'.trillian.GetLatestSignedLogRootRequest\x1a(.trillian.GetLatestSignedLogRootResponse\"+\x82\xd3\xe4\x93\x02%\x12#/v1beta1/logs/{log_id}/roots:latest\x12\x9f\x01\n\x15GetSequencedLeafCount\x12&.trillian.GetSequencedLeafCountRequest\x1a\'.trillian.GetSequencedLeafCountResponse\"5\x82\xd3\xe4\x93\x02/\x12-/v1beta1/logs/{log_id}/leaves:sequenced_count\x12\x8d\x01\n\x10GetEntryAndProof\x12!.trillian.GetEntryAndProofRequest\x1a\".trillian.GetEntryAndProofResponse\"2\x82\xd3\xe4\x93\x02,\x12*/v1beta1/logs/{log_id}/leaves/{leaf_index}\x12\x63\n\x07InitLog\x12\x18.trillian.InitLogRequest\x1a\x19.trillian.InitLogResponse\"#\x82\xd3\xe4\x93\x02\x1d\"\x1b/v1beta1/logs/{log_id}:init\x12L\n\x0bQueueLeaves\x12\x1c.trillian.QueueLeavesRequest\x1a\x1d.trillian.QueueLeavesResponse\"\x00\x12\x61\n\x12\x41\x64\x64SequencedLeaves\x12#.trillian.AddSequencedLeavesRequest\x1a$.trillian.AddSequencedLeavesResponse\"\x00\x12[\n\x10GetLeavesByIndex\x12!.trillian.GetLeavesByIndexRequest\x1a\".trillian.GetLeavesByIndexResponse\"\x00\x12[\n\x10GetLeavesByRange\x12!.trillian.GetLeavesByRangeRequest\x1a\".trillian.GetLeavesByRangeResponse\"\x00\x12X\n\x0fGetLeavesByHash\x12 .trillian.GetLeavesByHashRequest\x1a!.trillian.GetLeavesByHashResponse\"\x00\x42N\n\x19\x63om.google.trillian.protoB\x13TrillianLogApiProtoP\x01Z\x1agithub.com/google/trillianb\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_rpc_dot_status__pb2.DESCRIPTOR,trillian__pb2.DESCRIPTOR,])
 
 
+
+
+_CHARGETO = _descriptor.Descriptor(
+  name='ChargeTo',
+  full_name='trillian.ChargeTo',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='user', full_name='trillian.ChargeTo.user', index=0,
+      number=1, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=140,
+  serialized_end=164,
+)
 
 
 _QUEUELEAFREQUEST = _descriptor.Descriptor(
@@ -51,6 +82,13 @@ _QUEUELEAFREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='charge_to', full_name='trillian.QueueLeafRequest.charge_to', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -63,8 +101,8 @@ _QUEUELEAFREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=140,
-  serialized_end=207,
+  serialized_start=166,
+  serialized_end=272,
 )
 
 
@@ -94,8 +132,8 @@ _QUEUELEAFRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=209,
-  serialized_end=274,
+  serialized_start=274,
+  serialized_end=339,
 )
 
 
@@ -120,6 +158,13 @@ _ADDSEQUENCEDLEAFREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='charge_to', full_name='trillian.AddSequencedLeafRequest.charge_to', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -132,8 +177,8 @@ _ADDSEQUENCEDLEAFREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=276,
-  serialized_end=350,
+  serialized_start=341,
+  serialized_end=454,
 )
 
 
@@ -163,8 +208,8 @@ _ADDSEQUENCEDLEAFRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=352,
-  serialized_end=419,
+  serialized_start=456,
+  serialized_end=523,
 )
 
 
@@ -196,6 +241,13 @@ _GETINCLUSIONPROOFREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='charge_to', full_name='trillian.GetInclusionProofRequest.charge_to', index=3,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -208,8 +260,8 @@ _GETINCLUSIONPROOFREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=421,
-  serialized_end=502,
+  serialized_start=525,
+  serialized_end=645,
 )
 
 
@@ -246,8 +298,8 @@ _GETINCLUSIONPROOFRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=504,
-  serialized_end=613,
+  serialized_start=647,
+  serialized_end=756,
 )
 
 
@@ -286,6 +338,13 @@ _GETINCLUSIONPROOFBYHASHREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='charge_to', full_name='trillian.GetInclusionProofByHashRequest.charge_to', index=4,
+      number=5, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -298,8 +357,8 @@ _GETINCLUSIONPROOFBYHASHREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=615,
-  serialized_end=728,
+  serialized_start=759,
+  serialized_end=911,
 )
 
 
@@ -336,8 +395,8 @@ _GETINCLUSIONPROOFBYHASHRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=730,
-  serialized_end=845,
+  serialized_start=913,
+  serialized_end=1028,
 )
 
 
@@ -369,6 +428,13 @@ _GETCONSISTENCYPROOFREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='charge_to', full_name='trillian.GetConsistencyProofRequest.charge_to', index=3,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -381,8 +447,8 @@ _GETCONSISTENCYPROOFREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=847,
-  serialized_end=942,
+  serialized_start=1031,
+  serialized_end=1165,
 )
 
 
@@ -419,8 +485,8 @@ _GETCONSISTENCYPROOFRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=944,
-  serialized_end=1055,
+  serialized_start=1167,
+  serialized_end=1278,
 )
 
 
@@ -438,6 +504,13 @@ _GETLATESTSIGNEDLOGROOTREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='charge_to', full_name='trillian.GetLatestSignedLogRootRequest.charge_to', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -450,8 +523,8 @@ _GETLATESTSIGNEDLOGROOTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1057,
-  serialized_end=1104,
+  serialized_start=1280,
+  serialized_end=1366,
 )
 
 
@@ -481,8 +554,8 @@ _GETLATESTSIGNEDLOGROOTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1106,
-  serialized_end=1188,
+  serialized_start=1368,
+  serialized_end=1450,
 )
 
 
@@ -500,6 +573,13 @@ _GETSEQUENCEDLEAFCOUNTREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='charge_to', full_name='trillian.GetSequencedLeafCountRequest.charge_to', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -512,8 +592,8 @@ _GETSEQUENCEDLEAFCOUNTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1190,
-  serialized_end=1236,
+  serialized_start=1452,
+  serialized_end=1537,
 )
 
 
@@ -543,8 +623,8 @@ _GETSEQUENCEDLEAFCOUNTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1238,
-  serialized_end=1289,
+  serialized_start=1539,
+  serialized_end=1590,
 )
 
 
@@ -576,6 +656,13 @@ _GETENTRYANDPROOFREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='charge_to', full_name='trillian.GetEntryAndProofRequest.charge_to', index=3,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -588,8 +675,8 @@ _GETENTRYANDPROOFREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1291,
-  serialized_end=1371,
+  serialized_start=1592,
+  serialized_end=1711,
 )
 
 
@@ -633,8 +720,8 @@ _GETENTRYANDPROOFRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1374,
-  serialized_end=1515,
+  serialized_start=1714,
+  serialized_end=1855,
 )
 
 
@@ -652,6 +739,13 @@ _INITLOGREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='charge_to', full_name='trillian.InitLogRequest.charge_to', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -664,8 +758,8 @@ _INITLOGREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1517,
-  serialized_end=1549,
+  serialized_start=1857,
+  serialized_end=1928,
 )
 
 
@@ -695,8 +789,8 @@ _INITLOGRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1551,
-  serialized_end=1610,
+  serialized_start=1930,
+  serialized_end=1989,
 )
 
 
@@ -721,6 +815,13 @@ _QUEUELEAVESREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='charge_to', full_name='trillian.QueueLeavesRequest.charge_to', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -733,8 +834,8 @@ _QUEUELEAVESREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1612,
-  serialized_end=1683,
+  serialized_start=1991,
+  serialized_end=2101,
 )
 
 
@@ -764,8 +865,8 @@ _QUEUELEAVESRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1685,
-  serialized_end=1754,
+  serialized_start=2103,
+  serialized_end=2172,
 )
 
 
@@ -790,6 +891,13 @@ _ADDSEQUENCEDLEAVESREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='charge_to', full_name='trillian.AddSequencedLeavesRequest.charge_to', index=2,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -802,8 +910,8 @@ _ADDSEQUENCEDLEAVESREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1756,
-  serialized_end=1834,
+  serialized_start=2174,
+  serialized_end=2291,
 )
 
 
@@ -833,8 +941,8 @@ _ADDSEQUENCEDLEAVESRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1836,
-  serialized_end=1906,
+  serialized_start=2293,
+  serialized_end=2363,
 )
 
 
@@ -859,6 +967,13 @@ _GETLEAVESBYINDEXREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='charge_to', full_name='trillian.GetLeavesByIndexRequest.charge_to', index=2,
+      number=5, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -871,8 +986,8 @@ _GETLEAVESBYINDEXREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1908,
-  serialized_end=1969,
+  serialized_start=2365,
+  serialized_end=2465,
 )
 
 
@@ -909,8 +1024,8 @@ _GETLEAVESBYINDEXRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1971,
-  serialized_end=2082,
+  serialized_start=2467,
+  serialized_end=2578,
 )
 
 
@@ -942,6 +1057,13 @@ _GETLEAVESBYRANGEREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='charge_to', full_name='trillian.GetLeavesByRangeRequest.charge_to', index=3,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -954,8 +1076,8 @@ _GETLEAVESBYRANGEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2084,
-  serialized_end=2161,
+  serialized_start=2580,
+  serialized_end=2696,
 )
 
 
@@ -992,8 +1114,8 @@ _GETLEAVESBYRANGERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2163,
-  serialized_end=2274,
+  serialized_start=2698,
+  serialized_end=2809,
 )
 
 
@@ -1025,6 +1147,13 @@ _GETLEAVESBYHASHREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='charge_to', full_name='trillian.GetLeavesByHashRequest.charge_to', index=3,
+      number=5, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -1037,8 +1166,8 @@ _GETLEAVESBYHASHREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2276,
-  serialized_end=2362,
+  serialized_start=2811,
+  serialized_end=2936,
 )
 
 
@@ -1075,8 +1204,8 @@ _GETLEAVESBYHASHRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2364,
-  serialized_end=2474,
+  serialized_start=2938,
+  serialized_end=3048,
 )
 
 
@@ -1113,8 +1242,8 @@ _QUEUEDLOGLEAF = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2476,
-  serialized_end=2560,
+  serialized_start=3050,
+  serialized_end=3134,
 )
 
 
@@ -1186,8 +1315,8 @@ _LOGLEAF = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2563,
-  serialized_end=2796,
+  serialized_start=3137,
+  serialized_end=3370,
 )
 
 
@@ -1224,39 +1353,54 @@ _PROOF = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2798,
-  serialized_end=2847,
+  serialized_start=3372,
+  serialized_end=3421,
 )
 
 _QUEUELEAFREQUEST.fields_by_name['leaf'].message_type = _LOGLEAF
+_QUEUELEAFREQUEST.fields_by_name['charge_to'].message_type = _CHARGETO
 _QUEUELEAFRESPONSE.fields_by_name['queued_leaf'].message_type = _QUEUEDLOGLEAF
 _ADDSEQUENCEDLEAFREQUEST.fields_by_name['leaf'].message_type = _LOGLEAF
+_ADDSEQUENCEDLEAFREQUEST.fields_by_name['charge_to'].message_type = _CHARGETO
 _ADDSEQUENCEDLEAFRESPONSE.fields_by_name['result'].message_type = _QUEUEDLOGLEAF
+_GETINCLUSIONPROOFREQUEST.fields_by_name['charge_to'].message_type = _CHARGETO
 _GETINCLUSIONPROOFRESPONSE.fields_by_name['proof'].message_type = _PROOF
 _GETINCLUSIONPROOFRESPONSE.fields_by_name['signed_log_root'].message_type = trillian__pb2._SIGNEDLOGROOT
+_GETINCLUSIONPROOFBYHASHREQUEST.fields_by_name['charge_to'].message_type = _CHARGETO
 _GETINCLUSIONPROOFBYHASHRESPONSE.fields_by_name['proof'].message_type = _PROOF
 _GETINCLUSIONPROOFBYHASHRESPONSE.fields_by_name['signed_log_root'].message_type = trillian__pb2._SIGNEDLOGROOT
+_GETCONSISTENCYPROOFREQUEST.fields_by_name['charge_to'].message_type = _CHARGETO
 _GETCONSISTENCYPROOFRESPONSE.fields_by_name['proof'].message_type = _PROOF
 _GETCONSISTENCYPROOFRESPONSE.fields_by_name['signed_log_root'].message_type = trillian__pb2._SIGNEDLOGROOT
+_GETLATESTSIGNEDLOGROOTREQUEST.fields_by_name['charge_to'].message_type = _CHARGETO
 _GETLATESTSIGNEDLOGROOTRESPONSE.fields_by_name['signed_log_root'].message_type = trillian__pb2._SIGNEDLOGROOT
+_GETSEQUENCEDLEAFCOUNTREQUEST.fields_by_name['charge_to'].message_type = _CHARGETO
+_GETENTRYANDPROOFREQUEST.fields_by_name['charge_to'].message_type = _CHARGETO
 _GETENTRYANDPROOFRESPONSE.fields_by_name['proof'].message_type = _PROOF
 _GETENTRYANDPROOFRESPONSE.fields_by_name['leaf'].message_type = _LOGLEAF
 _GETENTRYANDPROOFRESPONSE.fields_by_name['signed_log_root'].message_type = trillian__pb2._SIGNEDLOGROOT
+_INITLOGREQUEST.fields_by_name['charge_to'].message_type = _CHARGETO
 _INITLOGRESPONSE.fields_by_name['created'].message_type = trillian__pb2._SIGNEDLOGROOT
 _QUEUELEAVESREQUEST.fields_by_name['leaves'].message_type = _LOGLEAF
+_QUEUELEAVESREQUEST.fields_by_name['charge_to'].message_type = _CHARGETO
 _QUEUELEAVESRESPONSE.fields_by_name['queued_leaves'].message_type = _QUEUEDLOGLEAF
 _ADDSEQUENCEDLEAVESREQUEST.fields_by_name['leaves'].message_type = _LOGLEAF
+_ADDSEQUENCEDLEAVESREQUEST.fields_by_name['charge_to'].message_type = _CHARGETO
 _ADDSEQUENCEDLEAVESRESPONSE.fields_by_name['results'].message_type = _QUEUEDLOGLEAF
+_GETLEAVESBYINDEXREQUEST.fields_by_name['charge_to'].message_type = _CHARGETO
 _GETLEAVESBYINDEXRESPONSE.fields_by_name['leaves'].message_type = _LOGLEAF
 _GETLEAVESBYINDEXRESPONSE.fields_by_name['signed_log_root'].message_type = trillian__pb2._SIGNEDLOGROOT
+_GETLEAVESBYRANGEREQUEST.fields_by_name['charge_to'].message_type = _CHARGETO
 _GETLEAVESBYRANGERESPONSE.fields_by_name['leaves'].message_type = _LOGLEAF
 _GETLEAVESBYRANGERESPONSE.fields_by_name['signed_log_root'].message_type = trillian__pb2._SIGNEDLOGROOT
+_GETLEAVESBYHASHREQUEST.fields_by_name['charge_to'].message_type = _CHARGETO
 _GETLEAVESBYHASHRESPONSE.fields_by_name['leaves'].message_type = _LOGLEAF
 _GETLEAVESBYHASHRESPONSE.fields_by_name['signed_log_root'].message_type = trillian__pb2._SIGNEDLOGROOT
 _QUEUEDLOGLEAF.fields_by_name['leaf'].message_type = _LOGLEAF
 _QUEUEDLOGLEAF.fields_by_name['status'].message_type = google_dot_rpc_dot_status__pb2._STATUS
 _LOGLEAF.fields_by_name['queue_timestamp'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _LOGLEAF.fields_by_name['integrate_timestamp'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+DESCRIPTOR.message_types_by_name['ChargeTo'] = _CHARGETO
 DESCRIPTOR.message_types_by_name['QueueLeafRequest'] = _QUEUELEAFREQUEST
 DESCRIPTOR.message_types_by_name['QueueLeafResponse'] = _QUEUELEAFRESPONSE
 DESCRIPTOR.message_types_by_name['AddSequencedLeafRequest'] = _ADDSEQUENCEDLEAFREQUEST
@@ -1289,6 +1433,13 @@ DESCRIPTOR.message_types_by_name['QueuedLogLeaf'] = _QUEUEDLOGLEAF
 DESCRIPTOR.message_types_by_name['LogLeaf'] = _LOGLEAF
 DESCRIPTOR.message_types_by_name['Proof'] = _PROOF
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+ChargeTo = _reflection.GeneratedProtocolMessageType('ChargeTo', (_message.Message,), dict(
+  DESCRIPTOR = _CHARGETO,
+  __module__ = 'trillian_log_api_pb2'
+  # @@protoc_insertion_point(class_scope:trillian.ChargeTo)
+  ))
+_sym_db.RegisterMessage(ChargeTo)
 
 QueueLeafRequest = _reflection.GeneratedProtocolMessageType('QueueLeafRequest', (_message.Message,), dict(
   DESCRIPTOR = _QUEUELEAFREQUEST,
@@ -1517,8 +1668,8 @@ _TRILLIANLOG = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=2850,
-  serialized_end=4618,
+  serialized_start=3424,
+  serialized_end=5192,
   methods=[
   _descriptor.MethodDescriptor(
     name='QueueLeaf',
