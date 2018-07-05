@@ -92,50 +92,79 @@ def make_log_client(log_id):
 TRILLIAN_ADMIN = TrillianAdminClient('localhost', '8090')
 
 
-@app.route('/logs')
+@app.route('/demoapi/logs/', methods=['GET'])
 @as_json
 def log_index():
-
-    def serialize_public_key(tree):
-        hash_algorithm = {
-            crypto.sigpb.sigpb_pb2.DigitallySigned.SHA256: 'SHA256',
-        }.get(tree.hash_algorithm)
-
-        signature_algorithm = {
-            crypto.sigpb.sigpb_pb2.DigitallySigned.ECDSA: 'ECDSA',
-        }.get(tree.signature_algorithm)
-
-        return {
-            'hash_algorithm': hash_algorithm,
-            'signature_algorithm': signature_algorithm,
-            'der': to_b64(tree.public_key.der),
-        }
-
-    def serialize_log_tree(log_tree):
-        db_log = Log.query.filter_by(id=log_tree.tree_id).first()
-
-        return OrderedDict([
-            ('log_id', log_tree.tree_id),
-            ('log_url', '{}v1beta1/logs/{}'.format(
-                 request.url_root, log_tree.tree_id
-                 )),
-            ('public_key', serialize_public_key(log_tree)),
-            ('name', db_log.name if db_log is not None else None),
-            ('slug', db_log.slug if db_log is not None else None),
-        ])
-
     return {
         'logs': map(serialize_log_tree, TRILLIAN_ADMIN.logs())
     }
 
 
-@app.route('/create')
-@as_json
-def log_create():
-    log_tree = TRILLIAN_ADMIN.create_log()
+def serialize_public_key(tree):
+    hash_algorithm = {
+        crypto.sigpb.sigpb_pb2.DigitallySigned.SHA256: 'SHA256',
+    }.get(tree.hash_algorithm)
+
+    signature_algorithm = {
+        crypto.sigpb.sigpb_pb2.DigitallySigned.ECDSA: 'ECDSA',
+    }.get(tree.signature_algorithm)
 
     return {
-        "id": log_tree.tree_id
+        'hash_algorithm': hash_algorithm,
+        'signature_algorithm': signature_algorithm,
+        'der': to_b64(tree.public_key.der),
+    }
+
+
+def serialize_log_tree(log_tree):
+    return OrderedDict([
+        ('log_id', log_tree.tree_id),
+        ('log_url', '{}v1beta1/logs/{}'.format(
+             request.url_root, log_tree.tree_id
+             )),
+        ('public_key', serialize_public_key(log_tree)),
+        ('name', log_tree.display_name),
+        ('description', log_tree.description),
+    ])
+
+
+
+@app.route('/demoapi/logs/', methods=['POST'])
+@as_json
+def log_create():
+    def validate(data):
+        if not data:
+            raise JsonError(
+                description=(
+                    'No JSON content found. Did you use '
+                    '`Content-Type: application/json`'
+                    )
+                )
+        try:
+            if not isinstance(data['name'], str):
+                raise JsonError(
+                    description='`name` must be a string'
+                )
+            if not isinstance(data['description'], str):
+                raise JsonError(
+                    description='`description` must be a string'
+                )
+        except KeyError:
+            raise JsonError(
+                description='Must pass `name` and `description`'
+            )
+
+        return data
+
+    data = validate(request.json)
+
+    log_tree = TRILLIAN_ADMIN.create_log(
+        display_name=data['name'],
+        description=data['description']
+    )
+
+    return {
+        'log': serialize_log_tree(log_tree)
     }
 
 

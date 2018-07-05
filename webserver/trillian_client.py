@@ -38,7 +38,7 @@ class TrillianAdminClient():
 
         return self.__stub.GetTree(request)
 
-    def create_log(self):
+    def create_log(self, display_name, description):
         request = trillian_admin_api_pb2.CreateTreeRequest(
             tree=trillian_pb2.Tree(
                 tree_state=trillian_pb2.ACTIVE,
@@ -46,8 +46,8 @@ class TrillianAdminClient():
                 hash_strategy=trillian_pb2.RFC6962_SHA256,
                 hash_algorithm=crypto.sigpb.sigpb_pb2.DigitallySigned.SHA256,
                 signature_algorithm=crypto.sigpb.sigpb_pb2.DigitallySigned.ECDSA,
-                display_name="nice log",
-                description="this is a nice description",
+                display_name=display_name,
+                description=description,
                 max_root_duration=google.protobuf.duration_pb2.Duration(seconds=600)
                 # TODO: think about this value
             ),
