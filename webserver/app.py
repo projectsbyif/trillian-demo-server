@@ -217,23 +217,17 @@ def get_leaves_by_range(log_id):
     }
 
 
-# @app.route('/api/v1/dataset/<dataset>/record/', methods=['POST'])
-# @as_json
-# def record_single_record(dataset):
-#     assert dataset == 'reasons-for-access'  # currently only support 1
-#
-#     record = request.json
-#
-#     try:
-#         validate_reasons_for_access_record(record)
-#     except ValueError as e:
-#         raise JsonError(description=str(e), status=400)
-#
-#     binary = make_normalized_json(record)
-#
-#     trillian = make_log_client(KNOWN_LOGS[REASONS_FOR_ACCESS])
-#     trillian.queue_leaf(binary)
-#     return {'message': 'OK, queued record for inclusion in merkle tree'}
+@app.route('/v1beta1/logs/<int:log_id>/leaves', methods=['POST'])
+@as_json
+def insert_single_log_entry(log_id):
+    log_client = make_log_client(log_id)
+
+    try:
+        log_client.queue_entry_dictionary(request.json)
+    except ValueError as e:
+        raise JsonError(description=str(e))
+
+    return {'message': 'OK, queued entry for inclusion in merkle tree'}
 
 
 def make_normalized_json(some_dict):
