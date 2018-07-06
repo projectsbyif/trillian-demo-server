@@ -90,7 +90,6 @@ def serialize_log_tree(log_tree):
     ])
 
 
-
 @app.route('/demoapi/logs/', methods=['POST'])
 @as_json
 def log_create():
@@ -124,6 +123,9 @@ def log_create():
         display_name=data['name'],
         description=data['description']
     )
+
+    log_client = make_log_client(log_tree.tree_id)
+    log_client.init_log()
 
     return {
         'log': serialize_log_tree(log_tree)

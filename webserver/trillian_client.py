@@ -69,6 +69,14 @@ class TrillianLogClient():
         self.__stub = trillian_log_api_pb2_grpc.TrillianLogStub(self.__channel)
         self.__log_id = log_id
 
+    def init_log(self):
+        request = trillian_log_api_pb2.InitLogRequest(
+            log_id=self.__log_id,
+            charge_to=trillian_log_api_pb2.ChargeTo()
+        )
+
+        return self.__stub.InitLog(request)
+
     def queue_leaf(self, data):
         leaf = trillian_log_api_pb2.LogLeaf(leaf_value=data)
 
