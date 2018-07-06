@@ -80,7 +80,7 @@ def serialize_public_key(tree):
 
 def serialize_log_tree(log_tree):
     return OrderedDict([
-        ('log_id', log_tree.tree_id),
+        ('log_id', str(log_tree.tree_id)),
         ('log_url', '{}v1beta1/logs/{}'.format(
              request.url_root, log_tree.tree_id
              )),
