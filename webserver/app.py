@@ -6,6 +6,7 @@ import json
 from os.path import join as pjoin
 from collections import Counter, OrderedDict
 
+import grpc
 
 from pathlib import Path
 from flask import Flask, render_template, request
