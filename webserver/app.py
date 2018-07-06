@@ -160,7 +160,7 @@ def get_latest_signed_log_root(log_id):
     return SignedLogRootSerializer(signed_log_root).json()
 
 
-@app.route('/v1beta1/logs/<int:log_id>:consistency_proof')
+@app.route('/v1beta1/logs/<int:log_id>:consistency_proof/')
 @as_json
 def get_consistency_proof(log_id):
     try:
@@ -192,7 +192,7 @@ def get_consistency_proof(log_id):
     }
 
 
-@app.route('/v1beta1/logs/<int:log_id>/roots:latest')
+@app.route('/v1beta1/logs/<int:log_id>/roots:latest/')
 @as_json
 def get_leaves_by_range(log_id):
     # TODO: ensure the return value mirrors https://github.com/google/trillian/blob/5647e7fe6360890ef906a11b3b7dd2da15514762/trillian_log_api.proto#L269
