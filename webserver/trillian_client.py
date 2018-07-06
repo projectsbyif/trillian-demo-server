@@ -61,6 +61,14 @@ class TrillianAdminClient():
 
         return self.__stub.CreateTree(request)
 
+    def delete_log(self, log_id):
+        request = trillian_admin_api_pb2.DeleteTreeRequest(
+            tree_id=log_id
+        )
+
+        return self.__stub.DeleteTree(request)
+
+
 class TrillianLogClient():
     MAX_LEAVES_PER_REQUEST = 1024
 

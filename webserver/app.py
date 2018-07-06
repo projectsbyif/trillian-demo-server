@@ -136,7 +136,22 @@ def to_b64(binary):
     return base64.b64encode(binary).decode('ascii')
 
 
-@app.route('/v1beta1/logs/<int:log_id>/roots:latest')
+@app.route('/demoapi/logs/<int:id>/', methods=['DELETE'])
+@as_json
+def log_delete(id):
+    try:
+        result = TRILLIAN_ADMIN.delete_log(
+            log_id=id
+        )
+
+        return {"foo": "OK"}, 200
+    except grpc.RpcError:
+        raise JsonError(
+            description='Requested log to delete not found'
+        )
+
+
+@app.route('/v1beta1/logs/<int:log_id>/roots:latest/')
 @as_json
 def get_latest_signed_log_root(log_id):
 
