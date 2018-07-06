@@ -1,7 +1,6 @@
 Flask==0.12.2
 flask_cors
 flask_json
-flask_sqlalchemy
 grpcio==1.11.0
 grpcio-tools==1.11.0
 utcdatetime

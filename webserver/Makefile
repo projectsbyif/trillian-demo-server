@@ -21,7 +21,7 @@ venv/bin/activate: requirements.txt
 	touch venv/bin/activate  # update so it's as new as requirements.txt
 
 .PHONY: run
-run: venv/bin/activate code static/style.css /vagrant/database.sqlite3
+run: venv/bin/activate code static/style.css
 	. venv/bin/activate ; \
 	FLASK_APP=app.py FLASK_DEBUG=1 python3 -m flask run --host=0.0.0.0
 
@@ -33,12 +33,7 @@ static/style.css: $(SOURCES)
 watch_sass:
 	sass --watch sass/style.scss:static/style.css
 
-/vagrant/database.sqlite3:
-	@echo "Creating empty database"
-	make initdb
-
 .PHONY: initdb
 initdb: venv/bin/activate
 	. venv/bin/activate ; \
 	FLASK_APP=app FLASK_DEBUG=1 python3 -m flask initdb
-

@@ -9,7 +9,6 @@ from collections import Counter, OrderedDict
 
 from pathlib import Path
 from flask import Flask, render_template, request
-from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from flask_json import FlaskJSON, JsonError, as_json
 
@@ -24,49 +23,12 @@ app = Flask(__name__)
 FlaskJSON(app)
 app.config['JSON_ADD_STATUS'] = False
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////vagrant/database.sqlite3'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config.from_object(__name__)  # load config from this file
 app.config.from_envvar('FLASK_SETTINGS_FILE', silent=True)
 app.config['JSON_USE_ENCODE_METHODS'] = True
 
-DB = SQLAlchemy(app)
 FlaskJSON(app)
 CORS(app)
-
-
-class LogEntry(DB.Model):
-    id = DB.Column(DB.Integer, primary_key=True)
-    raw_data = DB.Column(DB.LargeBinary)
-
-    log_id = DB.Column(
-        DB.Integer,
-        DB.ForeignKey('log.id'),
-        nullable=False
-    )
-    log = DB.relationship(
-        'Log',
-        backref=DB.backref('entries', lazy=True)
-    )
-
-
-class Log(DB.Model):
-    id = DB.Column(DB.Integer, primary_key=True)
-    slug = DB.Column(DB.String(200), unique=True, nullable=False)
-    name = DB.Column(DB.String(200), unique=False, nullable=False)
-
-    def __str__(self):
-        return '{} [{}]'.format(self.slug, self.url)
-
-    def __repr__(self):
-        return 'Log(slug={}, url={})'.format(self.slug, self.url)
-
-    def __json__(self):
-        return OrderedDict([
-            ('slug', self.slug),
-            ('name', self.name),
-            ('log_id', self.id),
-        ])
 
 
 class SignedLogRootSerializer():
@@ -270,22 +232,3 @@ def view_index():
     return render_template(
         'index.html'
     )
-
-
-@app.cli.command('initdb')
-def initdb_command():
-    DB.create_all()
-
-    # demo_log = Log(
-    #     slug='reasons-for-data-access',
-    #     name='Reasons for data access',
-    #     url='http://10.0.0.3:5000',
-    #     publisher=dm
-    # )
-
-    # DB.session.add(dm)
-    # DB.session.add(reasons_for_access)
-    # DB.session.commit()
-
-    # print('Initialized the database and added sample dataset.')
-    print('Initialized database')

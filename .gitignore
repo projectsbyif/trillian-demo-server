@@ -2,4 +2,3 @@
 gocode/*
 /*.log
 .DS_Store
-database.sqlite3
