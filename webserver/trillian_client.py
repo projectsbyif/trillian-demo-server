@@ -102,7 +102,6 @@ class TrillianLogClient():
         return self.queue_entry_binary(normaliser.normalise())
 
     def queue_entry_binary(self, data):
-        raise RuntimeError(data)
         leaf = trillian_log_api_pb2.LogLeaf(leaf_value=data)
 
         request = trillian_log_api_pb2.QueueLeafRequest(
@@ -174,6 +173,9 @@ class TrillianLogClient():
             response.leaves,
             key=lambda l: l.leaf_index
         )
+
+    def get_leaves_by_range(self, start_index, count):
+        return self.get_leaves(start_index, start_index + count)
 
     def get_consistency_proof(self, first_tree_size, second_tree_size):
         if first_tree_size <= 0:

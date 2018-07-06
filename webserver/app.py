@@ -196,15 +196,21 @@ def get_consistency_proof(log_id):
 @app.route('/v1beta1/logs/<int:log_id>/leaves:by_range')
 @as_json
 def get_leaves_by_range(log_id):
-    # TODO: ensure the return value mirrors https://github.com/google/trillian/blob/5647e7fe6360890ef906a11b3b7dd2da15514762/trillian_log_api.proto#L269
-
     def serialize(leaf):
+        # This should look like a `LogLeaf` message from
+        # https://github.com/google/trillian/blob/master/trillian_log_api.proto
+
         return {
+            'merkle_leaf_hash': to_b64(leaf.merkle_leaf_hash),
+            'leaf_value': to_b64(leaf.leaf_value),
+            'extra_data': None,             # TODO
             'leaf_index': leaf.leaf_index,
-            'leaf_value': base64.b64encode(leaf.leaf_value).decode('ascii')
+            'leaf_identity_hash': None,     # TODO
+            'queue_timestamp': None,        # TODO
+            'integrate_timestamp': None,    # TODO
         }
 
-    entries = map(
+    leaves = map(
         serialize,
         make_log_client(log_id).get_leaves_by_range(
             start_index=int(request.args['start_index']),
@@ -213,7 +219,7 @@ def get_leaves_by_range(log_id):
     )
 
     return {
-        'entries': entries
+        'leaves': leaves
     }
 
 
