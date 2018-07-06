@@ -55,7 +55,7 @@ def make_log_client(log_id):
 TRILLIAN_ADMIN = TrillianAdminClient('localhost', '8090')
 
 
-@app.route('/demoapi/logs/', methods=['GET'])
+@app.route('/demoapi/logs', methods=['GET'])
 @as_json
 def log_index():
     return {
@@ -91,7 +91,7 @@ def serialize_log_tree(log_tree):
     ])
 
 
-@app.route('/demoapi/logs/', methods=['POST'])
+@app.route('/demoapi/logs', methods=['POST'])
 @as_json
 def log_create():
     def validate(data):
@@ -137,7 +137,7 @@ def to_b64(binary):
     return base64.b64encode(binary).decode('ascii')
 
 
-@app.route('/demoapi/logs/<int:id>/', methods=['DELETE'])
+@app.route('/demoapi/logs/<int:id>', methods=['DELETE'])
 @as_json
 def log_delete(id):
     try:
@@ -152,7 +152,7 @@ def log_delete(id):
         )
 
 
-@app.route('/v1beta1/logs/<int:log_id>/roots:latest/')
+@app.route('/v1beta1/logs/<int:log_id>/roots:latest')
 @as_json
 def get_latest_signed_log_root(log_id):
 
@@ -161,7 +161,7 @@ def get_latest_signed_log_root(log_id):
     return SignedLogRootSerializer(signed_log_root).json()
 
 
-@app.route('/v1beta1/logs/<int:log_id>:consistency_proof/')
+@app.route('/v1beta1/logs/<int:log_id>:consistency_proof')
 @as_json
 def get_consistency_proof(log_id):
     try:
