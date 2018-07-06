@@ -9,6 +9,7 @@ import crypto.sigpb.sigpb_pb2
 import google.protobuf.duration_pb2
 import crypto.keyspb.keyspb_pb2
 
+
 class TrillianAdminClient():
     """
     Calls the gRPC endpoints defined in:
@@ -17,7 +18,8 @@ class TrillianAdminClient():
 
     def __init__(self, host, port):
         self.__channel = grpc.insecure_channel('{}:{}'.format(host, port))
-        self.__stub = trillian_admin_api_pb2_grpc.TrillianAdminStub(self.__channel)
+        self.__stub = trillian_admin_api_pb2_grpc.TrillianAdminStub(
+            self.__channel)
 
     def logs(self):
         """
@@ -45,19 +47,22 @@ class TrillianAdminClient():
                 tree_type=trillian_pb2.LOG,
                 hash_strategy=trillian_pb2.RFC6962_SHA256,
                 hash_algorithm=crypto.sigpb.sigpb_pb2.DigitallySigned.SHA256,
-                signature_algorithm=crypto.sigpb.sigpb_pb2.DigitallySigned.ECDSA,
+                signature_algorithm=crypto.sigpb.sigpb_pb2.DigitallySigned
+                                     .ECDSA,
                 display_name=display_name,
                 description=description,
-                max_root_duration=google.protobuf.duration_pb2.Duration(seconds=600)
+                max_root_duration=google.protobuf.duration_pb2.Duration(
+                    seconds=600
+                )
                 # TODO: think about this value
             ),
             key_spec=crypto.keyspb.keyspb_pb2.Specification(
                 ecdsa_params=crypto.keyspb.keyspb_pb2.Specification.ECDSA(
-                    curve=crypto.keyspb.keyspb_pb2.Specification.ECDSA.DEFAULT_CURVE
+                    curve=crypto.keyspb.keyspb_pb2.Specification.ECDSA
+                           .DEFAULT_CURVE
                 )
             )
         )
-
 
         return self.__stub.CreateTree(request)
 
