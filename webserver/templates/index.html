@@ -2,33 +2,38 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Trillian</title>
+    <title>Trillian Demo Server</title>
     <link type="text/css" rel="stylesheet" href="/static/style.css" />
     <script src="/static/jquery.js"></script>
     <script src="/static/app.js"></script>
   </head>
   <body>
     <div class="container">
-      <h1>Trillian</h1>
+      <h1>Trillian Demo Server</h1>
 
-      <h2>Current logs</h2>
+      <h2>Active logs (<span class="active_logs_count">0</span>)</h2>
 
       <ul id="current_logs">
       </ul>
 
       <h2>Create new log</h2>
 
-      <p>
-        <label for="new_log_name">Name</label>
-        <input type="text" id="new_log_name" />
-      </p>
+      <p class="error">Name and description must have values</p>
 
-      <p>
-        <label for="new_log_description">Description</label>
-        <input type="text" id="new_log_description" />
-      </p>
+      <fieldset class="new_log">
+        <p>
+          <label for="new_log_name">Name</label>
+          <input type="text" id="new_log_name" />
+        </p>
 
-      <button id="new_log_button_create">Create</button>
+        <p>
+          <label for="new_log_description">Description</label>
+          <input type="text" id="new_log_description" />
+        </p>
+
+        <button id="new_log_button_create">Create</button>
+      </div>
+
     </div>
   </body>
 </html>

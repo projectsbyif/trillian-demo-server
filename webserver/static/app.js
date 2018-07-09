@@ -1,10 +1,17 @@
 $(function() {
+  const ENDPOINTS = {
+    logsIndex: '/demoapi/logs',
+  };
+
   loadLogs();
 
   function loadLogs() {
-    $.getJSON('/demoapi/logs/', function(data) {
+    $('#current_logs').empty();
+
+    $.getJSON(ENDPOINTS.logsIndex, function(data) {
+      $('.active_logs_count').text(data.logs.length);
+
       data.logs.forEach(function(log) {
-        console.log(log);
         addLog(log.name, log.description, log.log_id);
       });
     });
@@ -16,14 +23,16 @@ $(function() {
     var name = $('#new_log_name').val();
     var description = $('#new_log_description').val();
 
+    $('.error').hide();
+
     if (name === '' || description === '') {
-      // TODO: Add error message
+      $('.error').show();
       return;
     }
 
     $.ajax({
       type: 'POST',
-      url: '/demoapi/logs/',
+      url: ENDPOINTS.logsIndex,
       dataType: 'json',
       contentType: 'application/json',
       async: false,
@@ -32,7 +41,7 @@ $(function() {
         description: description,
       }),
       success: function(data) {
-        console.log(data);
+        loadLogs();
 
         $('#new_log_name').val('');
         $('#new_log_description').val('');
@@ -43,50 +52,29 @@ $(function() {
   $('body').on('click', '.delete_log', function(e) {
     e.preventDefault();
 
+    if (!confirm('Are you sure?')) {
+      return;
+    }
+
     var id = $(this).parent().parent().attr('data-id');
 
-    console.log('/demoapi/logs/' + id + '/');
-
     $.ajax({
-      url: '/demoapi/logs/' + id + '/',
+      url: ENDPOINTS.logsIndex + '/' + id,
       type: 'DELETE',
       success: function(result) {
-        console.log(result);
+        loadLogs();
       }
     });
-
-    //$(this).parent().parent().remove();
   });
 
   function addLog(name, description, id) {
-    var li = $('<li>');
+    var template = '<li data-id="{{ ATTR_LOG_ID }}"><h3>Name</h3><p>{{ NAME }}</p><h3>Description</h3><p>{{ DESCRIPTION }}</p><h3>Log ID</h3><p>{{ LOG_ID }}</p><h3>Actions</h3><p><a href="#" class="delete_log">Delete</a></p></li>';
 
-    li.attr('data-id', id);
+    template = template.replace('{{ ATTR_LOG_ID }}', id);
+    template = template.replace('{{ NAME }}', name);
+    template = template.replace('{{ DESCRIPTION }}', description);
+    template = template.replace('{{ LOG_ID }}', id);
 
-    var pName = $('<p>');
-    pName.addClass('bold');
-    pName.text(name);
-
-    var pDescription = $('<p>');
-    pDescription.text(description);
-
-    var pId = $('<p>');
-    pId.text(id);
-
-    var pButtons = $('<p>');
-
-    var aDelete = $('<a>');
-    aDelete.attr('href', '#');
-    aDelete.addClass('delete_log');
-    aDelete.text('Delete');
-
-    pButtons.append(aDelete);
-
-    li.append(pName);
-    li.append(pDescription);
-    li.append(pId);
-    li.append(pButtons);
-
-    $('#current_logs').append(li);
+    $('#current_logs').append(template);
   }
 });
