@@ -145,7 +145,7 @@ def log_delete(id):
             log_id=id
         )
 
-        return {"foo": "OK"}, 200
+        return {"status": "OK"}, 200
     except grpc.RpcError:
         raise JsonError(
             description='Requested log to delete not found'
