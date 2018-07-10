@@ -152,6 +152,21 @@ def log_delete(id):
         )
 
 
+@app.route('/v1beta1/logs/<int:id>', methods=['GET'])
+@as_json
+def log_single(id):
+    try:
+        result = TRILLIAN_ADMIN.get_log(
+            log_id=id
+        )
+    except grpc.RpcError:
+        raise JsonError(
+            description='Requested log not found'
+        )
+
+    return serialize_log_tree(result)
+
+
 @app.route('/v1beta1/logs/<int:log_id>/roots:latest')
 @as_json
 def get_latest_signed_log_root(log_id):
