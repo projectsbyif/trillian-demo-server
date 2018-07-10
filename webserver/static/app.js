@@ -68,11 +68,12 @@ $(function() {
   });
 
   function addLog(name, description, id) {
-    var template = '<li data-id="{{ ATTR_LOG_ID }}"><h3>Name</h3><p>{{ NAME }}</p><h3>Description</h3><p>{{ DESCRIPTION }}</p><h3>Log ID</h3><p>{{ LOG_ID }}</p><h3>Actions</h3><p><a href="#" class="delete_log">Delete</a></p></li>';
+    var template = '<li data-id="{{ ATTR_LOG_ID }}"><h3>Name</h3><p>{{ NAME }}</p><h3>Description</h3><p>{{ DESCRIPTION }}</p><h3>Log ID</h3><p>{{ LOG_ID }}</p><h3>Actions</h3><p><a href="{{ URL_LOG_ID }}">View metadata</a> <a href="#" class="delete_log">Delete</a></p></li>';
 
     template = template.replace('{{ ATTR_LOG_ID }}', id);
     template = template.replace('{{ NAME }}', name);
     template = template.replace('{{ DESCRIPTION }}', description);
+    template = template.replace('{{ URL_LOG_ID }}', '/v1beta1/logs/' + id);
     template = template.replace('{{ LOG_ID }}', id);
 
     $('#current_logs').append(template);
