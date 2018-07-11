@@ -1,15 +1,14 @@
-# Verifiable Dataset Server
+# Trillian Log Server
 
-This is a virtual machine with a demo of a working verifiable dataset with two components:
+This is a virtual machine with a demo of a working Trillian log server, made up of parts:
 
 1. An instance of [Trillian](https://github.com/google/trillian), providing the Merkle tree implementation using MySQL for storage
 
 2. A flask app (webserver) which:
 
+   * Provides a [demo UI](https://192.168.99.4:5000/) to create and delete logs
    * Provides Trillian API endpoints to allow a client to synchronise and check the merkle tree
-   * Provides a demo UI to create and delete logs
    * Provides a demo API endpoint for inserting new log records
-   * Provides API endpoints for synchronising and checking the merkle tree
 
 ## Run
 
