@@ -1,4 +1,4 @@
-import json
+import base64
 import grpc
 
 from collections import OrderedDict
@@ -100,16 +100,12 @@ class TrillianLogClient():
 
         return self.__stub.InitLog(request)
 
-    def queue_entry_dictionary(self, dictionary):
-        """
-        Store a Python dictionary
-        """
-        normaliser = DictToBinaryNormaliser(dictionary)
+    def queue_entry_base64(self, base64_data):
+        binary_data = base64.b64decode(base64_data)
 
-        return self.queue_entry_binary(normaliser.normalise())
-
-    def queue_entry_binary(self, data):
-        leaf = trillian_log_api_pb2.LogLeaf(leaf_value=data)
+        leaf = trillian_log_api_pb2.LogLeaf(
+            leaf_value=binary_data
+        )
 
         request = trillian_log_api_pb2.QueueLeafRequest(
             log_id=self.__log_id,
@@ -209,33 +205,3 @@ class TrillianLogClient():
 
         response = self.__stub.GetLatestSignedLogRoot(request)
         return response.signed_log_root
-
-
-class DictToBinaryNormaliser():
-    def __init__(self, dictionary):
-        self.__dictionary = dictionary
-
-    def normalise(self):
-        self.validate_is_dictionary()
-        self.validate_not_empty()
-        self.stringify_numbers()
-        self.order_by_keys()
-
-        return self.encode_to_json()
-
-    def validate_is_dictionary(self):
-        pass
-
-    def validate_not_empty(self):
-        pass
-
-    def stringify_numbers(self):
-        self.__dictionary = {k: str(v) for k, v in self.__dictionary.items()}
-
-    def order_by_keys(self):
-        self.__dictionary = OrderedDict(
-            sorted(self.__dictionary.items(), key=lambda x: x[0], reverse=True)
-        )
-
-    def encode_to_json(self):
-        return json.dumps(self.__dictionary, indent=0).encode('utf-8')

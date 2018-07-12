@@ -244,7 +244,7 @@ def insert_single_log_entry(log_id):
     log_client = make_log_client(log_id)
 
     try:
-        log_client.queue_entry_dictionary(request.json)
+        log_client.queue_entry_base64(request.json['base64_data'])
     except ValueError as e:
         raise JsonError(description=str(e))
 
