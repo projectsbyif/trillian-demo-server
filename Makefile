@@ -10,6 +10,7 @@ run_trillian_log_signer: $(TRAFFIC_COUNT_DEMO_LOG_ID_FILE)
 		--logtostderr \
 		--force_master \
 		--http_endpoint=localhost:8092 \
+		--rpc_endpoint=localhost:8094 \
 		--batch_size=50 \
 		--sequencer_guard_window=0 \
 		--sequencer_interval=10000ms
