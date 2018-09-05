@@ -247,6 +247,8 @@ def insert_single_log_entry(log_id):
         log_client.queue_entry_base64(request.json['base64_data'])
     except ValueError as e:
         raise JsonError(description=str(e))
+    except KeyError as e:
+        raise JsonError(description='JSON payload must include a "base64_data" value')
 
     return {'message': 'OK, queued entry for inclusion in merkle tree'}
 
