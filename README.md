@@ -1,14 +1,14 @@
-# Trillian Demo Server
+# Trillian Demo: Server
 
-This is a virtual machine with a demo of a working Trillian server, made up of parts:
+This is a virtual machine with a demo of a working [Trillian](https://github.com/google/trillian) server, made up of these parts:
 
 1. An instance of [Trillian](https://github.com/google/trillian), providing the Merkle tree implementation using MySQL for storage
 
 2. A Flask webserver app which:
 
-   * Provides a [demo UI](https://192.168.99.4:5000/) to create and delete logs
-   * Provides API endpoints to allow a client to synchronise and check the Merkle tree
-   * Provides a demo API endpoint for inserting new log records
+  * Provides a [front-end](https://192.168.99.4:5000/) to create and delete logs
+  * Provides API endpoints to allow a client to synchronise and check the Merkle tree
+  * Provides a demo API endpoint for inserting new log records
 
 ## Run
 
@@ -25,15 +25,13 @@ This is a virtual machine with a demo of a working Trillian server, made up of p
 
 ## Play
 
-
 ### Add a log
 
-Once everything's running, try adding a log by browsing to [192.168.99.4:5000](http://192.168.99.4:5000)
-
+Once everything's running, you can a log by going to [http://192.168.99.4:5000](http://192.168.99.4:5000) in your browser.
 
 ### Look at the log's metadata
 
-In the UI, click on the log metadata, which takes you to `/v1beta1/logs/<LOG ID>`
+In the front-end, click on View metadata, which takes you to `/v1beta1/logs/<LOG ID>`
 
 * The `log_url` is the base URL needed to interact with the log
 * the `public_key` is used to sign log roots. In order to verify anything from the log, you'll need to take a copy of this public key to verify those signatures.
@@ -68,9 +66,9 @@ For example, suppose you previously validated the tree with 10 entries in it. La
 
 ## Trillian
 
-Trillian is built [from source, from the latest commit on Github.](https://github.com/google/trillian)
+Trillian is built [from source, from the latest commit on GitHub](https://github.com/google/trillian).
 
-The `./gocode` directory is shared from the host machine into the VM as a cache, reducing the time it takes to `vagrant destroy && vagrant up`
+The `./gocode` directory is shared from the host machine into the virtual machine as a cache, reducing the time it takes to `vagrant destroy && vagrant up`
 
 ## Webserver
 
@@ -81,7 +79,6 @@ It lives inside the [webserver/](https://github.com/projectsbyif/trillian-demo-s
 In Trillian's terminology, the webserver implements a *personality*. Trillian aims to be a generic Merkle tree implementation, while the personality implements the public interface.
 
 The webserver communicates with Trillian using [gRPC](https://grpc.io/), where the API is defined in these main protobuf files:
-
 
 * [trillian_admin_api.proto](https://github.com/google/trillian/blob/master/trillian_admin_api.proto) — Used to create and delete logs.
 
