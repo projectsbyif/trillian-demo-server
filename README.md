@@ -1,13 +1,13 @@
-# Trillian Log Server
+# Trillian Demo Server
 
-This is a virtual machine with a demo of a working Trillian log server, made up of parts:
+This is a virtual machine with a demo of a working Trillian server, made up of parts:
 
 1. An instance of [Trillian](https://github.com/google/trillian), providing the Merkle tree implementation using MySQL for storage
 
-2. A flask app (webserver) which:
+2. A Flask webserver app which:
 
    * Provides a [demo UI](https://192.168.99.4:5000/) to create and delete logs
-   * Provides Trillian API endpoints to allow a client to synchronise and check the merkle tree
+   * Provides API endpoints to allow a client to synchronise and check the Merkle tree
    * Provides a demo API endpoint for inserting new log records
 
 ## Run
@@ -40,15 +40,17 @@ In the UI, click on the log metadata, which takes you to `/v1beta1/logs/<LOG ID>
 
 ### Insert a log entry
 
-You can `POST` data into a log (although the [python API client](https://github.com/projectsbyif/trillian-demo-python-api-client) can do this for you):
+You can `POST` data into a log (although the [Python API client](https://github.com/projectsbyif/trillian-demo-python-api-client) can do this for you):
+
+The data must be encoded as base64 and passed to this endpoint in a JSON string called `base64_data`.
 
 ```
-curl -X POST -H 'Content-type: application/json' http://192.168.99.4:5000/logs/<LOG ID>/leaves -d '{"foo": "bar"}'
+curl -X POST -H 'Content-type: application/json' http://192.168.99.4:5000/logs/<LOG ID>/leaves -d '{"base64_data": "eyJmb28iOiAiYmFyIn0="}'
 ```
 
 ### Get the latest signed log root
 
-This Trillian endpoint provides the `tree_size` and the `root_hash` (the bottom of the Merkle tree), *signed* by the log's public key.
+This endpoint provides the `tree_size` and the `root_hash` (the bottom of the Merkle tree), *signed* by the log's public key.
 
 ```
 curl 'http://192.168.99.4:5000/v1beta1/logs/<LOG ID>/roots:latest'
@@ -56,7 +58,7 @@ curl 'http://192.168.99.4:5000/v1beta1/logs/<LOG ID>/roots:latest'
 
 ### Get a Merkle consistency proof between two tree sizes:
 
-This Trillian endpoint provides the information you need to validate that one tree is a *subtree* of a larger tree.
+This endpoint provides the information you need to validate that one tree is a *subtree* of a larger tree.
 
 ```
 curl 'http://192.168.99.4:5000/v1beta1/logs/<LOG ID>:consistency_proof?first_tree_size=10&second_tree_size=20'
@@ -74,7 +76,7 @@ The `./gocode` directory is shared from the host machine into the VM as a cache,
 
 The webserver is a [Flask](http://flask.pocoo.org/) app.
 
-It lives inside the [webserver/](https://github.com/projectsbyif/trillian-demo-log-server/blob/master/webserver) directory.
+It lives inside the [webserver/](https://github.com/projectsbyif/trillian-demo-server/blob/master/webserver) directory.
 
 In Trillian's terminology, the webserver implements a *personality*. Trillian aims to be a generic Merkle tree implementation, while the personality implements the public interface.
 
@@ -87,4 +89,4 @@ The webserver communicates with Trillian using [gRPC](https://grpc.io/), where t
 
 * [trillian.proto](https://github.com/google/trillian/blob/master/trillian.proto) — describes object types like `Tree`
 
-The webserver has a local copy of all the protobuf files requires in the [protobuf/](https://github.com/projectsbyif/trillian-demo-log-server/blob/master/webserver/protobuf) directory.
+The webserver has a local copy of all the protobuf files requires in the [protobuf/](https://github.com/projectsbyif/trillian-demo-server/blob/master/webserver/protobuf) directory.
