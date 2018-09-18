@@ -23,7 +23,7 @@ venv/bin/activate: requirements.txt
 .PHONY: run
 run: venv/bin/activate code static/style.css
 	. venv/bin/activate ; \
-	FLASK_APP=app.py FLASK_DEBUG=1 python3 -m flask run --host=0.0.0.0
+	python3 app.py
 
 
 static/style.css: $(SOURCES)
