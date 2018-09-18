@@ -218,11 +218,11 @@ def get_leaves_by_range(log_id):
         return {
             'merkle_leaf_hash': to_b64(leaf.merkle_leaf_hash),
             'leaf_value': to_b64(leaf.leaf_value),
-            'extra_data': None,             # TODO
+            'extra_data': None,
             'leaf_index': leaf.leaf_index,
-            'leaf_identity_hash': None,     # TODO
-            'queue_timestamp': None,        # TODO
-            'integrate_timestamp': None,    # TODO
+            'leaf_identity_hash': None,
+            'queue_timestamp': None,
+            'integrate_timestamp': None,
         }
 
     leaves = map(
@@ -248,7 +248,9 @@ def insert_single_log_entry(log_id):
     except ValueError as e:
         raise JsonError(description=str(e))
     except KeyError as e:
-        raise JsonError(description='JSON payload must include a "base64_data" value')
+        raise JsonError(
+            description='JSON payload must include a "base64_data" value'
+        )
 
     return {'message': 'OK, queued entry for inclusion in merkle tree'}
 
