@@ -1,4 +1,4 @@
-Flask==0.12.2
+Flask==1.0
 flask_cors
 flask_json
 grpcio==1.11.0
